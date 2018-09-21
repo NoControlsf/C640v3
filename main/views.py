@@ -1,9 +1,12 @@
 from django.shortcuts import render
 import json
 from users.models import User
+from tool_03.models import Blog
+
 # Create your views here.
 def index(request):
-    return render(request, 'basemain.html')
+    a = Blog.objects.all().order_by('-id')[:5]
+    return render(request, 'basemain.html', {'blogs': a})
 
 def accounts_profile(request):
     if request.method == 'POST':

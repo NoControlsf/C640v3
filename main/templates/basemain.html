@@ -45,6 +45,7 @@
         </ul>
     </div>
 </nav>
+
 <div class="container container-center jumbotron">
     <div class="col-ms-8 col-ms-offset-4">
         {% block content %}
@@ -55,6 +56,20 @@
         </div>
         {% endblock %}
     </div>
+</div>
+
+<div class="container text-center jumbotron">
+    {% for blog in blogs %}
+    <article class="article">
+        <h2><a href="#0"><b>{{ blog.name }}</b></a></h2>{% load poll_extras %}
+        <p class="small text-secondary">发表于{{ blog.created_at|datetime }}</p>
+        <p class="text-secondary">{{ blog.content }}</p>
+        <p><a href="/blog/{{ blog.id }}">继续阅读 <i class="uk-icon-angle-double-right"></i></a></p>
+    </article>
+    <hr class="article-divider">
+    {% empty %}
+    <h2>暂无通知</h2>
+    {% endfor %}
 </div>
 
 <div class="container text-center jumbotron">
